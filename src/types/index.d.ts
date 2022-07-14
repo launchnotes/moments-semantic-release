@@ -1,0 +1,3 @@
+type PluginConfiguration = {
+  projectId: string,
+}
