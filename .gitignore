@@ -1,0 +1,7 @@
+dist
+node_modules
+.DS_Store
+cypress.env.json
+dump.rdb
+package-lock.json
+yarn-error.log
