@@ -42,7 +42,7 @@ const success = (pluginConfig: PluginConfiguration, context: Context) => {
         return {
           hash: commit.hash,
           datetime: commit.committerDate,
-          message: commit.subject,
+          message: commit.message,
           author: {
             name: commit.author.name,
             email: commit.author.email,
