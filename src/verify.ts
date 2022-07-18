@@ -10,7 +10,7 @@ module.exports = async (pluginConfig: PluginConfiguration, context: Context) => 
     errors.push('LaunchNotes `projectId` is required');
   }
 
-  if (typeof env.LAUNCHNOTES_API_KEY === "string") {
+  if (!env.LAUNCHNOTES_API_KEY) {
     errors.push(`
       environment variable 'LAUNCHNOTES_API_KEY' is required. Please create a
       management key and pass it as an environment variable when calling
