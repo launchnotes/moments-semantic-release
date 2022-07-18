@@ -1,5 +1,6 @@
 import { Context } from 'semantic-release';
-import { MomentsApi, Configuration } from '@launchnotes/moments-api-client';
+import { MomentsApi, PostMomentsRequest } from '@launchnotes/moments-api-client';
+import { Configuration } from '@launchnotes/moments-api-client/dist';
 
 /**
  * Post a list of commits to the /moments endpoint
@@ -16,40 +17,46 @@ import { MomentsApi, Configuration } from '@launchnotes/moments-api-client';
 */
 
 const success = (pluginConfig: PluginConfiguration, context: Context) => {
+  const { projectId } = pluginConfig;
   const {
+    nextRelease,
     commits,
     env,
     logger,
   } = context;
+
   const apiToken = env.LAUNCHNOTES_API_KEY;
-  const config = new Configuration({apiKey: apiToken});
-  const api = new MomentsApi(config);
-
-  const {
-    projectId,
-  } = pluginConfig;
-
-  const commitPayload = commits?.map((commit) => {
-    return commit;
+  const config = new Configuration({
+    accessToken: apiToken,
+    // TODO Revisit where to derive the basePath and what values to use
+    basePath: 'https://app.launchnotes.local:8080',
   });
 
-  try {
-    const response = api.postMoments({
-      schemaId: 'test.json',
-      projectId: projectId,
-      data: {
-        commits: commitPayload
-      },
-    }).then((result: unknown) => {
-      console.log(result);
-      logger.log('Success');
-    }).catch((error: unknown) => {
-      console.log(error);
-      logger.error('There was an error', error);
-    });
-  } catch (error) {
-    logger.error('There was an error', error);
-  }
+  const api = new MomentsApi(config);
+  const request: PostMomentsRequest = {
+    schemaId: 'https://schema.launchnotes.dev/schemas/deploy.json',
+    projectId: projectId,
+    data: {
+      version: nextRelease?.version,
+      commits: commits?.map((commit) => {
+        return {
+          hash: commit.hash,
+          datetime: commit.committerDate,
+          message: commit.subject,
+          author: {
+            name: commit.author.name,
+            email: commit.author.email,
+          },
+        }
+      }),
+    },
+  };
+
+  api.postMoments(request).then((result) => {
+    console.log(result);
+  }).catch((error) => {
+    console.log(error);
+  });
 }
 
 export default success;

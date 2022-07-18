@@ -11,7 +11,11 @@ const verifyConditions = (pluginConfig: PluginConfiguration, context: Context) =
   }
 
   if (typeof env.LAUNCHNOTES_API_KEY === "string") {
-    errors.push('environment variable `LAUNCHNOTES_API_KEY` is required.  Please create a management key and pass it as an environment variable when calling semantic release');
+    errors.push(`
+      environment variable 'LAUNCHNOTES_API_KEY' is required. Please create a
+      management key and pass it as an environment variable when calling
+      semantic release
+    `);
   }
 
   if (errors.length > 0) {
