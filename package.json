@@ -1,6 +1,6 @@
 {
   "name": "@launchnotes/moments-semantic-release",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "files": [
     "dist/",
@@ -19,7 +19,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@launchnotes/moments-api-client": "^1.1.5",
+    "@launchnotes/moments-api-client": "^1.1.6",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "axios": "^0.24.0",
     "conventional-changelog-conventionalcommits": "^4.6.3",

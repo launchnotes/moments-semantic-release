@@ -38,10 +38,10 @@
   resolved "https://registry.yarnpkg.com/@isaacs/string-locale-compare/-/string-locale-compare-1.1.0.tgz#291c227e93fd407a96ecd59879a35809120e432b"
   integrity sha512-SQ7Kzhh9+D+ZW9MA0zkYv3VXhIDNx+LzM6EJ+/65I3QY+enU6Itte7E5XX7EWrqLW2FN4n06GWzBnPoC3th2aQ==
 
-"@launchnotes/moments-api-client@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@launchnotes/moments-api-client/-/moments-api-client-1.1.5.tgz#835294bd107a6fc521500f75db94ae5af9505d41"
-  integrity sha512-QsGBQIL43NI50YS+vigJb7JxpJedVU8HGocRnIeBNIJsZh5B3EbBp+mNbFcVErWeBaPbrimyZ0jeaWO+vSZgxA==
+"@launchnotes/moments-api-client@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@launchnotes/moments-api-client/-/moments-api-client-1.1.6.tgz#cc327ecf6a87d6d1b6e13e49602f53b5e23f36b3"
+  integrity sha512-z6q8G85YBGkY3WL8YdfXqGmC7EMBvmDxf5WjwVZNTCkC91BYM4m1P/n7ylbWE7IQUWSlSEy4vt+LXjcoCx1cvA==
   dependencies:
     axios "^0.27.2"
     typescript "^4.7.4"

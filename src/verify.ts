@@ -1,7 +1,7 @@
 import { Context } from "semantic-release";
 import AggregateError from 'aggregate-error';
 
-const verifyConditions = (pluginConfig: PluginConfiguration, context: Context) => {
+module.exports = async (pluginConfig: PluginConfiguration, context: Context) => {
   const errors: string[] = [];
   const { logger: { log }, env } = context;
   const { projectId } = pluginConfig;
@@ -24,5 +24,3 @@ const verifyConditions = (pluginConfig: PluginConfiguration, context: Context) =
     log('LaunchNotes configured correctly!');
   }
 }
-
-export default verifyConditions;

@@ -1,6 +1,9 @@
 import { Context } from 'semantic-release';
-import { MomentsApi, PostMomentsRequest } from '@launchnotes/moments-api-client';
-import { Configuration } from '@launchnotes/moments-api-client/dist';
+import {
+  MomentsApi,
+  PostMomentsRequest,
+  Configuration
+} from '@launchnotes/moments-api-client';
 
 /**
  * Post a list of commits to the /moments endpoint
@@ -16,7 +19,7 @@ import { Configuration } from '@launchnotes/moments-api-client/dist';
  * @returns {String} The changelog for all the commits in `context.commits`.
 */
 
-const success = (pluginConfig: PluginConfiguration, context: Context) => {
+module.exports = async (pluginConfig: PluginConfiguration, context: Context) => {
   const { projectId } = pluginConfig;
   const {
     nextRelease,
@@ -58,5 +61,3 @@ const success = (pluginConfig: PluginConfiguration, context: Context) => {
     console.log(error);
   });
 }
-
-export default success;
