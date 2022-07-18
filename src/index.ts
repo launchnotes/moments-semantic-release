@@ -1,5 +1,5 @@
-const postMoments = require('./src/postMoments');
-const verify = require('./src/verify');
+const postMoments = require('./postMoments');
+const verify = require('./verify');
 import { Context } from "semantic-release";
 
 let verified:boolean;

@@ -6,7 +6,7 @@ module.exports = async (pluginConfig: PluginConfiguration, context: Context) => 
   const { logger: { log }, env } = context;
   const { projectId } = pluginConfig;
 
-  if (typeof projectId === "string") {
+  if (!projectId) {
     errors.push('LaunchNotes `projectId` is required');
   }
 
