@@ -1,5 +1,5 @@
 import { Context } from "semantic-release";
-import AggregateError from 'aggregate-error';
+const SemanticReleaseError = require('@semantic-release/error');
 
 module.exports = async (pluginConfig: PluginConfiguration, context: Context) => {
   const errors: string[] = [];
@@ -8,19 +8,22 @@ module.exports = async (pluginConfig: PluginConfiguration, context: Context) => 
 
   if (!projectId) {
     errors.push('LaunchNotes `projectId` is required');
+    throw new SemanticReleaseError(
+      'No LaunchNotes projectId.',
+      'ENOLAUNCHNOTESPROJECTID',
+      `A LaunchNotes projectId must be passed via the pluginConfig.`
+    )
   }
 
   if (!env.LAUNCHNOTES_API_KEY) {
-    errors.push(`
-      environment variable 'LAUNCHNOTES_API_KEY' is required. Please create a
-      management key and pass it as an environment variable when calling
-      semantic release
-    `);
+    throw new SemanticReleaseError(
+      'No LaunchNotes API Key.',
+      'ENOLAUNCHNOTESAPIKEY',
+      `A LaunchNotes API Key must be created and passed as an environment variable on your CI environment.`
+    )
   }
 
   if (errors.length > 0) {
-    throw new AggregateError(errors);
-  } else {
     log('LaunchNotes configured correctly!');
   }
 }
