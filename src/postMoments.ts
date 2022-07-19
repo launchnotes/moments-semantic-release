@@ -31,8 +31,7 @@ module.exports = async (pluginConfig: PluginConfiguration, context: Context) => 
   const apiToken = env.LAUNCHNOTES_API_KEY;
   const config = new Configuration({
     accessToken: apiToken,
-    // TODO Revisit where to derive the basePath and what values to use
-    basePath: 'https://app.launchnotes.local:8080',
+    basePath: 'https://app.launchnotes.io',
   });
 
   const api = new MomentsApi(config);
