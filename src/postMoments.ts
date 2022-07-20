@@ -57,8 +57,9 @@ module.exports = async (pluginConfig: PluginConfiguration, context: Context) => 
   api.postMoments(request).catch((error) => {
     if (error.response) {
       const response = error.response;
+      const data = response?.data;
       console.error(
-        `${response.data?.message}\nEMOMENTSAPISTATUS${response?.status}\n${response?.data?.errors?.join('\n')}`,
+        `${data?.message}\nEMOMENTSAPISTATUS${response?.status}\n${data?.errors?.join('\n')}\n${data}`,
       );
     } else if (error.request) {
       console.error(
