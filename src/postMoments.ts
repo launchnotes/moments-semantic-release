@@ -5,8 +5,6 @@ import {
   Configuration
 } from '@launchnotes/moments-api-client';
 
-const SemanticReleaseError = require('@semantic-release/error');
-
 /**
  * Post a list of commits to the /moments endpoint
  *
@@ -55,26 +53,20 @@ module.exports = async (pluginConfig: PluginConfiguration, context: Context) => 
     },
   };
 
+  // TODO: Use SemanticReleaseError instead of just console.error
   api.postMoments(request).catch((error) => {
     if (error.response) {
       const response = error.response;
-
-      throw new SemanticReleaseError(
-        response.data?.message,
-        `EMOMENTSAPISTATUS${response?.status}`,
-        response?.data?.errors?.join('\n'),
+      console.error(
+        `${response.data?.message}\nEMOMENTSAPISTATUS${response?.status}\n${response?.data?.errors?.join('\n')}`,
       );
     } else if (error.request) {
-      throw new SemanticReleaseError(
-        'Bad response',
-        'EMOMENTSAPICONFIG',
-        `${error.request}`,
+      console.error(
+        `Bad response\nEMOMENTSAPICONFIG\n${error.request}`,
       );
     } else {
-      throw new SemanticReleaseError(
-        'Bad config',
-        'EMOMENTSAPICONFIG',
-        `${error.config}`,
+      console.error(
+        `Bad config EMOMENTSAPICONFIG ${error.config}`,
       )
     }
   });
